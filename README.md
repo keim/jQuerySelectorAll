@@ -68,4 +68,4 @@ jQuerySelectorAll is a wrapper of querySelectorAll with jquery style, and some g
 (This method is available only after wait() or seq())
 
 #### $.stop()
-    stop time sequencial modifications. (available only after wait() or seq())
+stop time sequencial modifications. (available only after wait() or seq())
