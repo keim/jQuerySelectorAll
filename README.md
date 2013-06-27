@@ -4,6 +4,7 @@ jQuerySelectorAll is a wrapper of querySelectorAll with jquery style, and some g
 *THIS IS REALY FAR FROM JQUERY and THERE AER NO COMPATIBILITIES.*
 
 ###jQuerySelectorAll supports following methods in 4kB.
+    $.fn.extend([object])
     $([CSS Query]/[html]/[DOM Elem]).eq([index])
     $([CSS Query]/[html]/[DOM Elem]).get([index])
     $([CSS Query]/[html]/[DOM Elem]).each([function])
@@ -63,3 +64,8 @@ jQuerySelectorAll is a wrapper of querySelectorAll with jquery style, and some g
         $(".class2").hide();
       },1000);
     },1000);
+    
+(This method is available only after wait() or seq())
+
+#### $.stop()
+    stop time sequencial modifications. (available only after wait() or seq())
