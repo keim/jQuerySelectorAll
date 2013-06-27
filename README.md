@@ -20,7 +20,7 @@ jQuerySelectorAll is a wrapper of querySelectorAll with jquery style, and some g
     $([CSS Query]/[html]/[DOM Elem]).attr([name],([value])/[object])
     $([CSS Query]/[html]/[DOM Elem]).hide()
     $([CSS Query]/[html]/[DOM Elem]).show()
-    $([CSS Query]/[html]/[DOM Elem]).append()
+    $([CSS Query]/[html]/[DOM Elem]).append([jQuerySelectorAll Elem]/[html]/[DOM Elem])
     $([CSS Query]/[html]/[DOM Elem]).html(([html]))
     $([CSS Query]/[html]/[DOM Elem]).text(([text]))
     $([CSS Query]/[html]/[DOM Elem]).val(([value]))
