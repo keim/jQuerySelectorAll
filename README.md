@@ -3,7 +3,7 @@
 jQuerySelectorAll is a wrapper of querySelectorAll with jquery style, and some good small tools for css modification sequence.  
 *THIS IS REALY FAR FROM JQUERY and THERE AER NO COMPATIBILITIES.*
 
-###jQuerySelectorAll supports following methods in 4kB code(uncompressed).
+###jQuerySelectorAll supports following methods in 4kB.
     $([CSS Query]/[html]/[DOM Elem]).eq([index])
     $([CSS Query]/[html]/[DOM Elem]).get([index])
     $([CSS Query]/[html]/[DOM Elem]).each([function])
