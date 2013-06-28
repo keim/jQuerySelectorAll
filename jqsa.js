@@ -1,18 +1,24 @@
 (function(w){if(!w.$){
-var _c=function(e){return e.className.split(/\s+/)},c_=function(e,l){e.className=l.join(" ")},
+var pl=["widht","height","left","top","padding","margin","size","raduis"],
+_c=function(e){return e.className.split(/\s+/)},c_=function(e,l){e.className=l.join(" ")},
 _e=function(s){var d=document.createElement("div");d.innerHTML=s;return d.children},
+_ss=function(n,v){var i;if(/^-?\d*\.?\d+$/.test(v))for(i=0;i<pl.length;i++)if(n.indexOf(pl[i])>-1)return String(v)+"px";return v},
+_wh=function(t,p){var d=t.documentElemnt;return Math.Max(t.body["scroll"+p],t.body["offset"+p],d["scroll"+p],d["offset"+p],d["client"+p])},
 _=function(nl){this._="('A`)";this.nl=nl||[];this.length=this.nl.length},p,_$;
 window[p]=_$=function(q){return (q._=="('A`)"&&nl in q)?q:new _((typeof q!="string")?[q]:(q.charAt(0)=="<")?_e(q):document.querySelectorAll(q));};
 _$.fn=p=_.prototype;
+_$.each=function(o,f){for(var k in o)f(k,o[k])};
+_$.isWindow=function(w){return w!=null&&w===w.window};
+_$.proxy=function(t,f,a){return function(){f.apply(t,a)}};
 p._e=function(f){for(var nl=this.nl,i=0,l=nl.length;i<l;i++)f.call(nl[i]);return this};
 p._m=function(f){var r,a=[];for(var nl=this.nl,i=0,l=nl.length;i<l;i++){r=f.call(nl[i]);if(r)a.push(r)}return a};
-p._s=function(t,o){t._e(function(){var s=this.style;for(var k in o)s[k]=o[k]})};
+p._s=function(t,o){t._e(function(){var s=this.style;for(var k in o)s[k]=_ss(k,o[k])})};
 p._a=function(t,o){t._e(function(){for(var k in o)this.setAttribute(k,o[k])})};
 p._v=function(f,a){var o=a[0];if(typeof o=="string"){if(typeof a[1]=="undefined")return 1;o={};o[a[0]]=a[1]}f(this,o);return 0};
-p._b=function(o){return this._e(function(){for(var k in o)this.addEventListener(k,o[k])})};
+p._b=function(o){return this._e(function(){for(var k in o)this.addEventListener(k,_$.proxy(this,o[k]))})};
 p.extend=function(o){for(var k in o){this[k]=o[k]}return this};
 p.extend({
-eq:function(i){return new _((this.nl[i])?[this.nl[i]]:[])},
+eq:function(i){i+=(i<0?this.length:0);return new _((this.nl[i])?[this.nl[i]]:[])},
 get:function(i){return this.nl[i]},
 each:function(f){return this._e(f)},
 map:function(f){return this._m(f)},
@@ -23,10 +29,13 @@ hasClass:function(n){return (this.length>0&&_c(this.nl[0]).indexOf(n)!=-1);},
 addClass:function(){var a=arguments;return this._e(function(){var t=this,c=_c(t);for(var i=0,l=a.length;i<l;i++)if(c.indexOf(a[i])==-1)c.push(a[i]);c_(t,c)})},
 removeClass:function(){var a=arguments;return this._e(function(){var t=this,c=_c(t);for(var i=0,j,l=a.length;i<l;i++)if((j=c.indexOf(a[i]))!=-1)delete c[j];c_(t,c)})},
 toggleClass:function(n){return this._e(function(){var t=this,c=_c(t),i=c.indexOf(n);if(i==-1)c.push(n);else delete c[i];c_(t,c)})},
-css:function() {var a=arguments,t=this;if(t.length>0){if(t._v(t._s,a)){t=t.nl[0].style[a[0]];if(a[0]=="opacity"&&t=="")return 1}}return t},
+css:function() {var a=arguments,t=this;if(t.length>0){if(t._v(t._s,a)){t=t.nl[0];t=t.currentStyle||document.defaultView.getComputedStyle(t,'')[a[0]]}}return t},
 attr:function(){var a=arguments,t=this;if(t.length>0){if(t._v(t._a,a))return t.nl[0].getAttribute(a[0])}return t},
-hide:function(){return this._s(this,{"display":"none"})},
-show:function(){return this._s(this,{"display":"block"})},
+hide:function(){this._s(this,{"display":"none"});return this},
+show:function(){this._s(this,{"display":"block"});return this},
+scrollTop:function(v){var t=this.nl[0],w;if(t){w=_$.isWindow(t)?t:t.nodeType==9&&t.defaultView;if(v===undefined)return w?w.pageYOffset:t._sct;if(w){w.scrollTo(w.pageXOffset,v)}else{t._sct=v}}return this},
+width:function(v){var t=this.nl[0];if(t&&v===undefined)return _$.isWindow(t)?t.document.documentElement.clientWidth:t.nodeType==9?_wh(t,"Width"):parseInt(this.css("width"));return this.css("width",v)},
+height:function(v){var t=this.nl[0];if(t&&v===undefined)return _$.isWindow(t)?t.document.documentElement.clientHeight:t.nodeType==9?_wh(t,"Height"):parseInt(this.css("height"));return this.css("height",v)},
 append:function(e){return this._e(function(){for(var nl=_$(e).nl,i=0,l=nl.length;i<l;i++){this.appendChild(nl[i])}})},
 html:function(t){if(t)return this._e(function(){this.innerHTML=t});return (this.length==0)?"":this.nl[0].innerHTML;},
 text:function(t){if(t)return this._e(function(){this.innerText=t});var s="";this._e(function(){s+=this.innerText});return s},
